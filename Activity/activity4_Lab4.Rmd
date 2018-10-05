@@ -1,0 +1,151 @@
+---
+title: "Activity Four - Lab1"
+author: "Taehoon Ha"
+date: "10/04/2018"
+output: 
+  github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### 1. Write a function that normalizes a vector (with two parameters):  
+  * vector to be normalized.
+  * parameter that allows normalize the vector two ways: only centered with zero mean and also standardize with mean zero and standard deviation 1.
+  
+Example:    
+  * input(1, 2, 3, 4)
+  * centered vector is
+```{r}
+standardize <- function (vec, centered_only = F) {
+  
+  # create an empty vector in order to save the output result
+  result <- c()
+  
+  # centered_only = F
+  if (!centered_only) {
+    for (i in 1:length(vec)) {
+      result[i] <- (vec[i] - mean(vec)) / sd(vec) 
+    }
+  
+  # centered_only = T
+  } else {
+    for (i in 1:length(vec)) {
+      result[i] <- vec[i] - mean(vec) 
+    }
+  }
+  
+  # return the result vector
+  return(result)  
+}
+
+a <- c(1, 2, 3, 4)
+standardize(a, centered_only = T)
+standardize(a, centered_only = F)
+```
+
+### 2. Modify previous function in order to handle missing values in a vector.
+```{r}
+standardize <- function (vec, centered_only=F, na.rm=F) {
+  
+  # create an empty vector in order to save the output result
+  result <- c()
+  
+  # 1. centered_only = F
+  if(!centered_only) {
+    
+    # 1.a centered_only = F, na.rm = F
+    if(!na.rm) {
+      for (i in 1:length(vec)) {
+        result[i] <- (vec[i] - mean(vec)) / sd(vec)}}
+    
+    # 1.b centered_only = F, na.rm = T
+    else {
+      for (i in 1:length(vec)) {
+        result[i] <- (vec[i] - mean(vec, na.rm = T)) / sd(vec, na.rm = T)
+      }
+    }
+  }
+  
+  # 2. centered_only = F
+  else {
+    
+    # 2.a centered_only = T, na.rm = F
+    if(!na.rm) {
+      for (i in 1:length(vec)) {
+        result[i] <- vec[i] - mean(vec)}}
+    
+    # 2.b centered_only = T, na.rm = T
+    else {
+      for (i in 1:length(vec)) {
+        result[i] <- vec[i] - mean(vec, na.rm = T)
+      }
+    }
+  }
+  
+  # return the result
+  return(result)
+}
+
+standardize(c(1,2,3,4,NA))
+standardize(c(1,2,3,4,NA), na.rm = T)
+```
+
+### 3. Create a 4 by 4 matrix
+Create a function to calculate sum of matrix elements without built-in function sum()
+```{r}
+
+# The function below automatically generates 4 by 4 table filled with 1:16 vector and calculated the sum of matrix.
+
+matrix_sum <- function() {
+  
+  # generating a 4 by 4 table filled with the given vector, 1:16
+  mat <- matrix(1:16, 4, 4)
+  
+  # the vector for saving the sum
+  mat.sum <- 0
+  
+  # row-indexing from 1 to 4
+  for (i in 1:nrow(mat)) {
+    
+    # col-indexing begin from 1 to 4
+    for (j in 1:ncol(mat)) {
+      
+      # saving the sum result in the vector
+      mat.sum <- mat.sum + mat[i, j]
+    }
+  }
+  
+  # show the matrix used and return the sum of the matrix
+  print(mat)
+  return(mat.sum)
+}
+
+matrix_sum()
+```
+
+
+```{r}
+
+# Advanced
+
+matrix_sum <- function (vec, nrow, ncol) {
+  mat <- matrix(vec, nrow = nrow, ncol = ncol)
+  mat.sum <- 0
+  
+  for (i in 1:nrow(mat)) {
+    for (j in 1:ncol(mat)) {
+      mat.sum <- mat.sum + mat[i, j]
+    }
+  }
+  print(mat)
+  cat(paste0("\nThis is ", nrow, " by ", ncol, " matrix.\n", "The sum of matrix is: \n"))
+  return(mat.sum)
+}
+
+matrix_sum(vec = 1:16, nrow = 4, ncol = 4)
+
+# Other Example
+matrix_sum(vec = 1:100, nrow = 20, ncol = 5)
+```
