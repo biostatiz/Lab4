@@ -1,5 +1,5 @@
 ---
-title: "Activity Four - Lab1"
+title: "Activity Four for Lab4"
 author: "Taehoon Ha"
 date: "10/04/2018"
 output: 
@@ -15,8 +15,9 @@ knitr::opts_chunk$set(echo = TRUE)
   * parameter that allows normalize the vector two ways: only centered with zero mean and also standardize with mean zero and standard deviation 1.
   
 Example:    
-  * input(1, 2, 3, 4)
-  * centered vector is
+
+  * input(1, 2, 3, 4)    
+  * centered vector is     
 ```{r}
 standardize <- function (vec, centered_only = F) {
   
