@@ -5,8 +5,8 @@
 
 ### 2. Create a GitHub repository Lab4 (files with R code for the assignment should be added to this repository)
 
-![](assignment4_Lab4_files/figure-markdown_github/unnamed-chunk-1-1.png)
-
 ### 3. Write the R code using ggplot function to recreate the graph from the Lecture 8 notes
+
+![](assignment4_Lab4_files/figure-markdown_github/unnamed-chunk-1-1.png)
 
 ### 4. Implement a function that will check if a given positive integer is a prime number.
