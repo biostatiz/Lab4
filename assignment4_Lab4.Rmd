@@ -15,24 +15,8 @@ library(ggplot2)
 ### 2. Create a GitHub repository Lab4 (files with R code for the assignment should be added to this repository)
 
 ### 3. Write the R code using ggplot function to recreate the graph from the Lecture 8 notes
-```{r}
-curve(dnorm, from=-3, to=3, xlim=c(-3, 6), lwd=2, col=4, axes=FALSE, xlab=NA, ylab=NA)
-curve(dnorm(x, mean=3.2), add=TRUE, col=2, lwd=2, from=0, to=6)
-coord.x <- c(qnorm(0.95), seq(qnorm(0.95), 0, by=-0.01), 0)
-coord.y <- c(0, dnorm(coord.x[-c(1, length(coord.x))], mean=3.2), 0) 
-polygon(coord.x, coord.y, col=rgb(1, 0, 0, 0.5)) 
-coord.x <- c(qnorm(0.95), seq(qnorm(0.95), 3, by=0.01), 3) 
-coord.y <- c(0, dnorm(coord.x[-c(1, length(coord.x))]), 0) 
-polygon(coord.x, coord.y, col=rgb(0, 0, 1, 0.5)) 
-abline(v = qnorm(0.95), lty=2, lwd=2) 
-text(1, 0.02, labels = expression(beta)) 
-text(2, 0.02, labels = expression(alpha), col = "white") 
-axis(1, at = c(0, 3.2), labels = c(expression(theta_0), expression(theta_a))) 
-axis(2) 
-box() 
-legend("topleft", c("Type I error", "Type II error"), fill=c(rgb(0, 0, 1, 0.5), rgb(1, 0, 0, 0.5)))
-```
 
+![assignment4 pic](https://ws1.sinaimg.cn/large/006tNbRwly1fw2hifct7ej30ya0immza.jpg)
 
 ```{r warning = F}
 ggplot(NULL, aes(x = c(-3, 6), y = c(0, 0.4))) +
@@ -102,7 +86,7 @@ ggplot(NULL, aes(x = c(-3, 6), y = c(0, 0.4))) +
                       label = c("Type I error",
                                 "Type II error")) +
   scale_x_continuous(breaks = c(0, 3.2), 
-                     labels = c("theta_0", "theta_a"))
+                     labels = c(expression(theta[0]), expression(theta[1])))
 
 ```
 
